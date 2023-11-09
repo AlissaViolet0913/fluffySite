@@ -1,0 +1,112 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Zen+Antique&display=swap");
+/* すべての要素に適用 */
+*{
+    margin: 0;
+    padding: 0;
+    /* googleファンとからコピーしたものを貼り付け */
+    font-family: 'Poppins', sans-serif;
+    color:white;
+}
+
+body{
+    height: 100%;
+    width: 100%;
+    background-image: url("./images/main.jpg");
+    /* 画像を全て表示されるようにする */
+    background-size: cover; 
+    /* 画像の中心を表示する */
+    background-position: center;
+    /* スクロールしても画像を保つ */
+    background-attachment: fixed;
+}
+
+body::after {
+    /* 疑似要素は必要 */
+    content: "";
+    position: absolute;
+    background-color: black;
+    width: 100%;
+    height: 500vh;
+    top: 0;
+    left: 00;
+    opacity: 0.5;
+    display: block;
+}
+
+.title{
+    position: absolute;
+    top:15%;
+    left: 15%;
+    z-index: 1;
+    /* transform: translateX(-50%); */
+    /* rem：倍 */
+    font-size: 2rem;
+}
+
+.title.active {
+    opacity: 1;
+    transition: all 3s;
+  }
+
+section{
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.img-wrap{
+    position: relative;
+    top: 40%;
+      /* leftはapp.jsで付加される */
+    height: 40%;
+    width: 1px;
+    overflow: hidden;
+    opacity: 0;
+}
+
+/* img-wrapにactiveというクラスが付与されたとき */
+.img-wrap.active{
+    width: 40vw;
+    opacity: 1;
+    /* opaciyは１秒かけて1にする */
+    transition: opacity 1s, width 2s;
+}
+
+.img{
+    /* img-wrapを親要素とする */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40vw;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    /* 大きくなってから小さくなっていく */
+    transform: scale(1.6);
+}
+
+.img-wrap.title.active > .img{
+/* imgタグに対してスケールを元に戻す */
+transform: scale(1);
+transition: 1s ease-out;
+}
+
+h2{
+    position: absolute;
+    font-size: 2.3rem;
+    top: 70%;
+    z-index: 2;
+    /* 行間 */
+    letter-spacing: 2px;
+    opacity: 0;
+    /* 全ての要素に対して0.2s */
+    transition: all 0.2s;
+}
+
+h2.active{
+    opacity: 1;
+    transition: opacity 3s;
+
+}
